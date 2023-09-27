@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('users', function (Blueprint $table) {
+           $table->string('first_name')->nullable();
+           $table->string('other_names')->nullable();
+           $table->string('surname')->nullable();
+           $table->string('user_number')->nullable()->unique();
+           $table->string('supervisor_username')->nullable();
+           $table->date('dob')->nullable();
+           $table->string('gender')->nullable();
+           $table->string('department_short_name')->nullable();
+           $table->string('mobile_no')->nullable();
+           $table->boolean('meals_active')->default(false);
+           $table->decimal('meals_allowance')->default(0.00);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        //
+    }
+};

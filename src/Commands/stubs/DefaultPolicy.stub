@@ -1,0 +1,18 @@
+<?php
+
+namespace {{ namespace }};
+use Savannabits\Saas\Concerns\Policy\InheritsStandardPolicy;
+use {{ auth_model_fqcn }};
+use {{ model_fqcn }};
+use {{ resource_fqcn }};
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class {{ modelPolicy }}
+{
+    use HandlesAuthorization, InheritsStandardPolicy;
+
+    function getResourceClass(): string
+    {
+        return {{ resource }}::class;
+    }
+}

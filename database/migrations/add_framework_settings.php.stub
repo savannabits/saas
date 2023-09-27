@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+return new class extends \Spatie\LaravelSettings\Migrations\SettingsMigration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        $this->migrator->add('framework.logo');
+        $this->migrator->add('framework.logo_on_dark');
+        $this->migrator->add('framework.copyright_text');
+        $this->migrator->add('framework.default_team_code');
+        $this->migrator->add('framework.default_country_code');
+        $this->migrator->add('framework.default_currency_code');
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        $this->migrator->delete('framework.logo');
+        $this->migrator->delete('framework.logo_on_dark');
+        $this->migrator->delete('framework.copyright_text');
+        $this->migrator->delete('framework.default_team_code');
+        $this->migrator->delete('framework.default_country_code');
+        $this->migrator->delete('framework.default_currency_code');
+    }
+};
