@@ -51,6 +51,7 @@ class SaasServiceProvider extends PackageServiceProvider
 
         $package->hasConfigFile([
             'armor',
+            'saas',
             'vanadi',
             'ldap',
             'permission',

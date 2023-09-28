@@ -2,6 +2,7 @@
 
 namespace Savannabits\Saas\Filament\Resources;
 
+use Savannabits\Saas\SaasPlugin;
 use Savannabits\Sass\Filament\Resources\TeamResource\RelationManagers;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -16,6 +17,14 @@ class TeamResource extends Resource
     protected static ?string $model = Team::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+    public static function getNavigationGroup(): ?string
+    {
+        return SaasPlugin::getNavigationGroupLabel();
+    }
 
     public static function form(Form $form): Form
     {

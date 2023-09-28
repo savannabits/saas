@@ -2,7 +2,7 @@
 namespace Savannabits\Saas;
 
 use App\Model\User;
-use App\Models\Team;
+use Savannabits\Saas\Models\Team;
 use Savannabits\Saas\Helpers\Access;
 use Savannabits\Saas\Models\Currency;
 use Savannabits\Saas\Settings\WebserviceSettings;
