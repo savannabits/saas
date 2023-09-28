@@ -17,8 +17,8 @@ class AddLdapColumnsToUsersTable extends Migration
         $driver = Schema::getConnection()->getDriverName();
 
         Schema::table('users', function (Blueprint $table) use ($driver) {
-            $table->string('guid')->nullable();
-            $table->string('domain')->nullable();
+            $table->string('guid',64)->nullable();
+            $table->string('domain',32)->nullable();
             $table->unsignedInteger('uac')->nullable();
 
             if ($driver !== 'sqlsrv') {

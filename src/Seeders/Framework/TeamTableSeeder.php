@@ -9,8 +9,9 @@ class TeamTableSeeder extends Seeder
 {
     public function run(): void
     {
-        Team::firstOrCreate(['code' =>'DEFAULT'],[
+        $team = Team::firstOrCreate(['code' =>'DEFAULT'],[
             'name' => 'DEFAULT TEAM'
         ]);
+        $team->submit();
     }
 }

@@ -86,8 +86,8 @@ class SavannabitsServiceProvider extends ServiceProvider
             $this->unsignedBigInteger('code_id')->autoIncrement();
             $this->index('code_id');
             $this->dropPrimary();
-            $this->string('code_prefix')->default($defaultCodePrefix);
-            $this->string('code');
+            $this->string('code_prefix',16)->default($defaultCodePrefix);
+            $this->string('code',48);
         });
 
         Blueprint::macro('dropCodeColumns', function (string $defaultCodePrefix = '') {

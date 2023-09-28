@@ -18,7 +18,7 @@ return new class extends Migration
             $table->teamCodeColumn();
             $table->statusColumns();
             $table->auditColumns();
-            $table->string('user_type_code')->default('GUEST');
+            $table->string('user_type_code',36)->default('GUEST');
         });
     }
 

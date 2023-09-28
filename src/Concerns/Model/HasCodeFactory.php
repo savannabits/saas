@@ -37,7 +37,7 @@ trait HasCodeFactory
         });
         static::created(function(Model $model) {
             if (Str::isUuid($model->getAttribute(static::getCodeColumnName()))) {
-                $model = $model::query()->where(static::getCodeColumnName(),'=', $model->getAttribute(static::getCodeColumnName()))->firstOrFail();
+                $model = $model::withoutGlobalScopes()->where('id','=', $model->getAttribute('id'))->firstOrFail();
                 $model->updateQuietly([static::getCodeColumnName() => $model->calculated_code]);
             }
         });

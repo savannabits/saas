@@ -18,9 +18,9 @@ return new class extends Migration
             $table->codeColumns('CURR');
             $table->teamColumn();
             $table->teamCodeColumn();
-            $table->string('name');
-            $table->string('symbol')->nullable();
-            $table->string('exchange_base_currency')->nullable();
+            $table->string('name',64);
+            $table->string('symbol',64)->nullable();
+            $table->string('exchange_base_currency',3)->nullable();
             $table->decimal('exchange_rate',21,8)->default(1.0);
             $table->timestamp('last_forex_update')->nullable();
             $table->statusColumns();

@@ -14,15 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-           $table->string('first_name')->nullable();
-           $table->string('other_names')->nullable();
-           $table->string('surname')->nullable();
-           $table->string('user_number')->nullable()->unique();
-           $table->string('supervisor_username')->nullable();
+           $table->string('first_name',32)->nullable();
+           $table->string('other_names',32)->nullable();
+           $table->string('surname',32)->nullable();
+           $table->string('user_number', 12)->nullable()->unique();
+           $table->string('supervisor_username',32)->nullable();
            $table->date('dob')->nullable();
-           $table->string('gender')->nullable();
-           $table->string('department_short_name')->nullable();
-           $table->string('mobile_no')->nullable();
+           $table->string('gender',10)->nullable();
+           $table->string('department_short_name',32)->nullable();
+           $table->string('mobile_no',15)->nullable();
            $table->boolean('meals_active')->default(false);
            $table->decimal('meals_allowance')->default(0.00);
         });

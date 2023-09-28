@@ -21,6 +21,8 @@ class CountriesSeeder extends Seeder
             $countries = new Countries();
             $countries->all()->each(function ($country) {
                 $code = $country->get('cca3');
+                $currency = $country->get('currencies.0');
+                if (strlen($currency) > 3) $currency = null;
                 $this->command->comment("Seeding $code");
                 Country::query()->firstOrCreate(['code' => $code, 'team_id'=> default_team()->id] , [
                     'cca2'          => $country->get('cca2'),
@@ -29,7 +31,7 @@ class CountriesSeeder extends Seeder
                     'capital'       => $country->get('capital.0'),
                     'flag_emoji'         => $country->get('flag.emoji'),
                     'flag_svg_path'   => $country->get('flag.svg_path'),
-                    'currency_code' => $country->get('currencies.0'),
+                    'currency_code' => $currency,
                 ]);
             });
         });

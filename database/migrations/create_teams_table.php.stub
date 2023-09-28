@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->codeColumns('TEAM');
-            $table->string('name');
+            $table->string('name',64);
             $table->auditColumns();
             $table->statusColumns();
             $table->uuidNestedSet();
+            $table->unsignedInteger('import_id')->nullable();
             $table->timestamps();
         });
     }

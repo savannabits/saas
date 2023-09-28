@@ -2,6 +2,7 @@
 namespace Savannabits\Saas;
 
 use App\Model\User;
+use Savannabits\Saas\Helpers\Framework;
 use Savannabits\Saas\Models\Team;
 use Savannabits\Saas\Helpers\Access;
 use Savannabits\Saas\Models\Currency;
@@ -11,6 +12,12 @@ if (!function_exists('Savannabits\Saas\team')) {
     function team(string $code): ?Team
     {
         return Team::whereCode($code)->first();
+    }
+}
+if (!function_exists('Savannabits\Saas\framework')) {
+    function framework(): Framework
+    {
+        return app(Framework::class);
     }
 }
 if (!function_exists('Savannabits\Saas\default_team')) {

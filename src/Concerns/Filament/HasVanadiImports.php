@@ -4,11 +4,15 @@ namespace Savannabits\Saas\Concerns\Filament;
 
 use Coolsam\FilamentExcel\Actions\ImportAction;
 use Coolsam\FilamentExcel\Actions\ImportField;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
+use Savannabits\Saas\Models\User;
 
 trait HasVanadiImports
 {
     protected function makeHeaderImportAction(?\Closure $createRecordUsing = null) {
-        $action = ImportAction::make('import')->fields($this->getImportFields());
+        $action = ImportAction::make('import')->fields($this->getImportFields())->color('success');
         if ($createRecordUsing) {
             $action->createRecordUsing($createRecordUsing);
         } else {
@@ -51,8 +55,23 @@ trait HasVanadiImports
             ...$this->mutateFieldsForRecordCreation($data)
         ]);
         $identifiers = collect($this->identifyForUpsertUsing($data));
-        return $this->enableUpserts()
-            ? static::getModel()::updateOrCreate($identifiers->toArray(), $args->except($identifiers->keys()->toArray())->toArray())
-            : static::getModel()::firstOrCreate($identifiers->toArray(), $args->except($identifiers->keys()->toArray())->toArray());
+        Log::info("Upserting record using: ".$identifiers->toJson());
+        try {
+            return $this->enableUpserts()
+                ? static::getModel()::withoutGlobalScope('team')->updateOrCreate($identifiers->toArray(), $args->except($identifiers->keys()->toArray())->toArray())
+                : static::getModel()::withoutGlobalScopes('team')->firstOrCreate($identifiers->toArray(), $args->except($identifiers->keys()->toArray())->toArray());
+        } catch (\Throwable $exception) {
+            Log::error($exception);
+            throw $exception;
+        }
+    }
+    public function updateOrCreate(Collection $identifiers,Collection $args) {
+        $existing = static::getModel()::withoutGlobalScopes()->where([$identifiers->toArray()]);
+        if ($existing) {
+            $existing->update($args->except($identifiers->keys()->toArray())->toArray());
+            return $existing;
+        } else {
+            return static::getModel()::create($args->merge($identifiers->toArray()));
+        }
     }
 }

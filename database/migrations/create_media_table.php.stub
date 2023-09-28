@@ -13,12 +13,12 @@ return new class extends Migration
 
             $table->morphs('model');
             $table->uuid('uuid')->nullable()->unique();
-            $table->string('collection_name');
-            $table->string('name');
-            $table->string('file_name');
-            $table->string('mime_type')->nullable();
-            $table->string('disk');
-            $table->string('conversions_disk')->nullable();
+            $table->string('collection_name',64);
+            $table->string('name',128);
+            $table->string('file_name',128);
+            $table->string('mime_type',64)->nullable();
+            $table->string('disk',32);
+            $table->string('conversions_disk',32)->nullable();
             $table->unsignedBigInteger('size');
             $table->json('manipulations');
             $table->json('custom_properties');
