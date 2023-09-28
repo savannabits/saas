@@ -2,9 +2,8 @@
 
 namespace Savannabits\Saas\Concerns\Model;
 
-use Filament\Facades\Filament;
-use Illuminate\Database\Eloquent\Model;
 use Savannabits\Saas\Models\Team;
+use Illuminate\Database\Eloquent\Model;
 use function Savannabits\Saas\default_team;
 
 trait HasTeam

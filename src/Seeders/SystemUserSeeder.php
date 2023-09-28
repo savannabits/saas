@@ -2,11 +2,10 @@
 
 namespace Savannabits\Saas\Seeders;
 
-use Savannabits\Saas\Contracts\DocStatus;
+use App\Models\Team;
 use App\Models\User;
 use Hash;
 use Illuminate\Database\Seeder;
-use Savannabits\Saas\Models\Team;
 use Savannabits\Saas\Seeders\Framework\TeamTableSeeder;
 use Throwable;
 use function Savannabits\Saas\default_team;

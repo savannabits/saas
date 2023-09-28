@@ -10,8 +10,10 @@ use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
+use Livewire\Livewire;
 use Savannabits\Saas\Commands\ArmorGenerateCommand;
 use Savannabits\Saas\Commands\ArmorSuperAdminCommand;
+use Savannabits\Saas\Livewire\SwitchTeam;
 use Savannabits\Saas\Providers\SavannabitsServiceProvider;
 use Savannabits\Saas\Seeders\AccessDatabaseSeeder;
 use Savannabits\Saas\Seeders\FrameworkSeeder;
@@ -81,6 +83,7 @@ class SaasServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
+        Livewire::component(static::$viewNamespace.'::switch-team',SwitchTeam::class);
         $this->registerConfigs();
         // Asset Registration
         FilamentAsset::register(

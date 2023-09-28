@@ -9,7 +9,6 @@ use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasTenants;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -18,15 +17,14 @@ use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
 use LdapRecord\Laravel\Auth\AuthenticatesWithLdap;
 use LdapRecord\Laravel\Auth\LdapAuthenticatable;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Translatable\HasTranslations;
 use Savannabits\Saas\Concerns\HasArmor;
 use Savannabits\Saas\Concerns\Model\HasAuditColumns;
 use Savannabits\Saas\Concerns\Model\HasCodeFactory;
 use Savannabits\Saas\Concerns\Model\HasDocStatus;
 use Savannabits\Saas\Concerns\Model\HasTeam;
 use Savannabits\Saas\Support\Utils;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 class User extends Authenticatable implements HasAvatar,FilamentUser,HasTenants, HasMedia, LdapAuthenticatable
 {

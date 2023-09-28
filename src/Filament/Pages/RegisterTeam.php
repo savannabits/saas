@@ -2,6 +2,7 @@
 
 namespace Savannabits\Saas\Filament\Pages;
 
+use App\Models\Team;
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
@@ -9,7 +10,6 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Tenancy\RegisterTenant;
 use Illuminate\Auth\Access\AuthorizationException;
-use Savannabits\Saas\Models\Team;
 use function Filament\authorize;
 
 class RegisterTeam extends RegisterTenant

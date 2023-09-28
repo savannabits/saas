@@ -2,17 +2,18 @@
 
 namespace Savannabits\Saas;
 
+use App\Models\Team;
 use Filament\Contracts\Plugin;
 use Filament\Navigation\NavigationGroup;
 use Filament\Panel;
+use Filament\Support\Facades\FilamentView;
+use Illuminate\Support\Facades\Blade;
 use Savannabits\Saas\Filament\Pages\ManageWebserviceSettings;
-use Savannabits\Saas\Filament\Pages\RegisterTeam;
 use Savannabits\Saas\Filament\Resources\CountryResource;
 use Savannabits\Saas\Filament\Resources\CurrencyResource;
+use Savannabits\Saas\Filament\Resources\TeamResource;
 use Savannabits\Saas\Helpers\Framework;
 use Savannabits\Saas\Http\Middleware\RedirectIfInertiaMiddleware;
-use Savannabits\Saas\Models\Team;
-use Savannabits\Saas\Settings\WebserviceSettings;
 
 class SaasPlugin implements Plugin
 {
@@ -51,6 +52,7 @@ class SaasPlugin implements Plugin
         }
         if ($this->shouldRegisterResources()) {
             $panel->resources([
+                TeamResource::class,
                 CurrencyResource::class,
                 CountryResource::class,
             ]);
@@ -59,7 +61,10 @@ class SaasPlugin implements Plugin
 
     public function boot(Panel $panel): void
     {
-        //
+        FilamentView::registerRenderHook(
+            'panels::user-menu.before',
+            fn() => view('savannabits-saas::team-switcher')
+        );
     }
 
     public static function make(): static
