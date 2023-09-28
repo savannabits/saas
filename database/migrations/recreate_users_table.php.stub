@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('teams', function (Blueprint $table) {
+        $this->down();
+        Schema::create('users', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->codeColumns('TEAM');
+            $table->codeColumns('U');
+            $table->string('username')->unique();
             $table->string('name');
-            $table->auditColumns();
-            $table->statusColumns();
-            $table->uuidNestedSet();
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -29,8 +32,8 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists('users');
     }
 };

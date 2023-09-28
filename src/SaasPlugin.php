@@ -2,7 +2,7 @@
 
 namespace Savannabits\Saas;
 
-use App\Models\Team;
+use Savannabits\Saas\Models\Team;
 use Filament\Contracts\Plugin;
 use Filament\Navigation\NavigationGroup;
 use Filament\Panel;

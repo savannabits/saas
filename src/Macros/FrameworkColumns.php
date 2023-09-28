@@ -67,9 +67,12 @@ class FrameworkColumns
         $table->foreignUuid('team_id')->constrained()->restrictOnDelete();
     }
 
-    public static function teamCodeColumn(Blueprint $table): void
+    public static function teamCodeColumn(Blueprint $table, bool $createCodeColumns=false, string $codePrefix = ''): void
     {
-        $table->string('code');
+
+        if ($createCodeColumns) {
+            $table->codeColumns($codePrefix);
+        }
         $table->unique([
             'code',
             'team_id',

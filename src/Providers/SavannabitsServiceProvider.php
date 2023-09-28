@@ -75,13 +75,29 @@ class SavannabitsServiceProvider extends ServiceProvider
             FrameworkColumns::teamColumn($this, $name);
         });
 
-        Blueprint::macro('teamCodeColumn', function (?string $codeColumn = 'code', ?string $teamColumn = 'team_id') {
-            FrameworkColumns::teamCodeColumn($this, $codeColumn, $teamColumn);
+        Blueprint::macro('teamCodeColumn', function (bool $createCodeColumns=false, string $codePrefix = '') {
+            FrameworkColumns::teamCodeColumn($this,$createCodeColumns,$codePrefix);
         });
 
         Blueprint::macro('dropTeamColumn', function (?string $name = 'team_id') {
             FrameworkColumns::dropTeamColumn($this, $name);
         });
+        Blueprint::macro('codeColumns', function (string $defaultCodePrefix = '') {
+            $this->unsignedBigInteger('code_id')->autoIncrement();
+            $this->index('code_id');
+            $this->dropPrimary();
+            $this->string('code_prefix')->default($defaultCodePrefix);
+            $this->string('code');
+        });
+
+        Blueprint::macro('dropCodeColumns', function (string $defaultCodePrefix = '') {
+            $this->dropColumn('code_id');
+            $this->dropIndex('code_id');
+            $this->dropColumn('code_prefix');
+            $this->dropColumn('code');
+        });
+
+
 
         /**
          * @deprecated Use dropTeamColumn() instead

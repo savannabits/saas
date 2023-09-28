@@ -3,15 +3,14 @@
 namespace Savannabits\Saas\Concerns\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Savannabits\Saas\Models\CodeFactory;
 
 trait HasCodeFactory
 {
-    abstract public function getCodePrefix(): string;
-
     public static function getCodeColumnName(): string
     {
-        return config('vanadiphp.default_code_column_name', 'code');
+        return 'code';
     }
 
     public function getCodePadLength(): int
@@ -32,15 +31,23 @@ trait HasCodeFactory
     public static function bootHasCodeFactory(): void
     {
         static::creating(function (Model $model) {
-            $code = $model::getCodeColumnName() ?? 'code';
-            if (! $model->{$code}) {
-                $model->{$code} = CodeFactory::generate(
-                    $model->getCodePrefix(),
-                    $model->getCodePadLength(),
-                    $model->getCodePadString(),
-                    $model->shouldOmitPrefix()
-                );
+            if (! $model->getAttribute(static::getCodeColumnName())) {
+                $model->{static::getCodeColumnName()} = Str::uuid()->toString();
             }
         });
+        static::created(function(Model $model) {
+            if (Str::isUuid($model->getAttribute(static::getCodeColumnName()))) {
+                $model = $model::query()->where(static::getCodeColumnName(),'=', $model->getAttribute(static::getCodeColumnName()))->firstOrFail();
+                $model->updateQuietly([static::getCodeColumnName() => $model->calculated_code]);
+            }
+        });
+    }
+    public function getCalculatedCodeAttribute(): string
+    {
+        $code = Str::of($this->code_id)->padLeft($this->getCodePadLength() ?: 2,$this->getCodePadString() ?: '0');
+        if (!$this->shouldOmitPrefix()) {
+            $code = $code->prepend($this->code_prefix)->upper();
+        }
+        return $code->toString();
     }
 }

@@ -19,7 +19,7 @@ class Webservice
      */
     public function fetchStudent(string | int $studentNo): Collection
     {
-        return Http::withoutVerifying()->asJson()->acceptJson()->get(Ws::webservice_settings()->getStudentUrl($studentNo))->throw()->collect();
+        return Http::withoutVerifying()->asJson()->acceptJson()->get(Ws::settings()->getStudentUrl($studentNo))->throw()->collect();
     }
 
     /**
@@ -27,7 +27,7 @@ class Webservice
      */
     public function fetchStaff(string $username): Collection
     {
-        return Http::withoutVerifying()->asJson()->acceptJson()->get(Ws::webservice_settings()->getStaffUrl($username))->throw()->collect();
+        return Http::withoutVerifying()->asJson()->acceptJson()->get(Ws::settings()->getStaffUrl($username))->throw()->collect();
     }
 
     /**
@@ -35,6 +35,6 @@ class Webservice
      */
     public function fetchDepartments(): Collection
     {
-        return Http::withoutVerifying()->asJson()->acceptJson()->get(Ws::webservice_settings()->getAllDepartmentsUrl())->throw()->collect();
+        return Http::withoutVerifying()->asJson()->acceptJson()->get(Ws::settings()->getAllDepartmentsUrl())->throw()->collect();
     }
 }

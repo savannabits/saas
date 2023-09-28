@@ -174,14 +174,14 @@ class SaasServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
+            'recreate_users_table',
+            'create_teams_table',
             'create_websockets_statistics_entries_table',
             'create_settings_table',
             'create_media_table',
             'add_ldap_columns_to_users_table',
-            'modify_fields_in_users_table',
             'create_permission_tables',
             'create_code_factories_table',
-            'create_teams_table',
             'create_document_cancellations_table',
             'add_framework_fields_to_users_table',
             'add_webservice_settings',

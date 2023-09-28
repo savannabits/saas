@@ -2,7 +2,7 @@
 
 namespace Savannabits\Saas\Seeders\Framework;
 
-use App\Models\Team;
+use Savannabits\Saas\Models\Team;
 use Illuminate\Database\Seeder;
 
 class TeamTableSeeder extends Seeder

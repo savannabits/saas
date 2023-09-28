@@ -14,11 +14,7 @@ class FrameworkSeeder extends Seeder
 {
     public function run(): void
     {
-        Model::unguard();
-        Auth::login(system_user());
-        $this->call(CurrenciesSeeder::class);
         $this->call(CountriesSeeder::class);
-        Auth::logout();
-        Model::reguard();
+        $this->call(CurrenciesSeeder::class);
     }
 }

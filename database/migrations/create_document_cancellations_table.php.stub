@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('document_cancellations', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('code')->unique();
+            $table->codeColumns('DOCCANC');
+            $table->teamColumn();
+            $table->teamCodeColumn();
             $table->uuidMorphs('document');
             $table->string('document_code')->nullable();
-            $table->teamColumn();
             $table->statusColumns();
             $table->auditColumns();
             $table->text('reason')->nullable();

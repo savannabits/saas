@@ -66,14 +66,10 @@ class User extends Authenticatable implements HasAvatar,FilamentUser,HasTenants,
         'password' => 'hashed',
     ];
 
-    public function getCodePrefix(): string
-    {
-        return 'U';
-    }
 
     public function shouldOmitPrefix(): bool
     {
-        return true;
+        return false;
     }
 
     public function registerMediaCollections(): void

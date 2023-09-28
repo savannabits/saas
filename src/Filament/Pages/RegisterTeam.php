@@ -2,7 +2,7 @@
 
 namespace Savannabits\Saas\Filament\Pages;
 
-use App\Models\Team;
+use Savannabits\Saas\Models\Team;
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;

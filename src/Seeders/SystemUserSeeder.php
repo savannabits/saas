@@ -2,7 +2,7 @@
 
 namespace Savannabits\Saas\Seeders;
 
-use App\Models\Team;
+use Savannabits\Saas\Models\Team;
 use App\Models\User;
 use Hash;
 use Illuminate\Database\Seeder;
@@ -28,7 +28,8 @@ class SystemUserSeeder extends Seeder
                 'username'          => 'system-process',
                 'user_number'       => 'SPU',
                 'email_verified_at' => now(),
-                'team_id'           => default_team()->getAttribute('id'),
+                'user_type_code'    => 'SYSTEM',
+                'team_id'           => default_team()?->getAttribute('id'),
             ]);
             $user->saveOrFail();
             $user->submit();
