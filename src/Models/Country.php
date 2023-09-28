@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Savannabits\Saas\Concerns\Model\HasAuditColumns;
 use Savannabits\Saas\Concerns\Model\HasCodeFactory;
 use Savannabits\Saas\Concerns\Model\HasDocStatus;
+use Savannabits\Saas\Concerns\Model\HasTeam;
 use Savannabits\Saas\Models\Currency;
 
 class Country extends Model
 {
-    use HasUuids, HasAuditColumns, HasDocStatus, HasCodeFactory;
+    use HasUuids, HasAuditColumns, HasDocStatus, HasCodeFactory, HasTeam;
     protected $guarded = ['id'];
 
     public function getCodePrefix(): string

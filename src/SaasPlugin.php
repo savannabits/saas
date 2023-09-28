@@ -16,6 +16,8 @@ use Savannabits\Saas\Settings\WebserviceSettings;
 
 class SaasPlugin implements Plugin
 {
+    private bool $registerResources = true;
+    private bool $registerPages = true;
     public function getId(): string
     {
         return 'savannabits-saas';
@@ -37,17 +39,22 @@ class SaasPlugin implements Plugin
             ->middleware([
                 RedirectIfInertiaMiddleware::class,
             ])
-            ->pages([
-                ManageWebserviceSettings::class,
-            ])
             ->discoverPages(in: __DIR__ . '/../Filament/Pages', for: 'Savannabits\\Saas\\Filament\\Pages')
-            ->resources([
-                CurrencyResource::class,
-                CountryResource::class,
-            ])
 //            ->tenant(Team::class)
 //            ->tenantRegistration(RegisterTeam::class)
         ;
+
+        if ($this->shouldRegisterPages()) {
+            $panel->pages([
+                ManageWebserviceSettings::class,
+            ]);
+        }
+        if ($this->shouldRegisterResources()) {
+            $panel->resources([
+                CurrencyResource::class,
+                CountryResource::class,
+            ]);
+        }
     }
 
     public function boot(Panel $panel): void
@@ -66,5 +73,27 @@ class SaasPlugin implements Plugin
         $plugin = filament(app(static::class)->getId());
 
         return $plugin;
+    }
+
+    public function registerResources(bool $registerResources = true): SaasPlugin
+    {
+        $this->registerResources = $registerResources;
+        return $this;
+    }
+
+    public function shouldRegisterResources(): bool
+    {
+        return $this->registerResources;
+    }
+
+    public function registerPages(bool $registerPages = true): SaasPlugin
+    {
+        $this->registerPages = $registerPages;
+        return $this;
+    }
+
+    public function shouldRegisterPages(): bool
+    {
+        return $this->registerPages;
     }
 }

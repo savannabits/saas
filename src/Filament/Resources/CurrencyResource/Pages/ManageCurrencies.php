@@ -26,7 +26,7 @@ class ManageCurrencies extends ManageRecords
                         ->default('KES')
                         ->searchable()
                 ])
-                ->action(fn(array $data) => Vanadi::updateExchangeRates($data['base_currency'] ?: 'KES'))
+                ->action(fn(array $data) => \Saas::updateExchangeRates($data['base_currency'] ?: 'KES'))
                 ->color('success')->icon('heroicon-o-arrow-path'),
             Actions\CreateAction::make(),
         ];

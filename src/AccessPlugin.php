@@ -8,11 +8,12 @@ use Filament\Panel;
 use Filament\SpatieLaravelTranslatablePlugin;
 use Savannabits\Saas\Filament\Resources\RoleResource;
 use Savannabits\Saas\Filament\Resources\UserResource;
+use Savannabits\Saas\Http\Middleware\RedirectIfInertiaMiddleware;
 
 class AccessPlugin implements Plugin
 {
     private bool $useLdap = false;
-
+    private bool $registerResources = true;
     public function getId(): string
     {
         return 'savannabits-access';
@@ -26,13 +27,19 @@ class AccessPlugin implements Plugin
     public function register(Panel $panel): void
     {
         $panel
+            ->middleware([
+                RedirectIfInertiaMiddleware::class,
+            ])
+            ->discoverPages(in: __DIR__ . '/../Filament/Pages', for: 'Vanadi\\Vanadi\\Filament\\Pages')
             ->navigationGroups([
                 NavigationGroup::make(static::getNavGroupLabel())->collapsible()->collapsed(),
-            ])
-            ->resources([
+            ]);
+        if ($this->isRegisterResources()) {
+            $panel->resources([
                 UserResource::class,
                 RoleResource::class,
-            ])->plugin(SpatieLaravelTranslatablePlugin::make()->defaultLocales(['en']));
+            ]);
+        }
         if ($this->isUseLdap()) {
             $panel->ldap();
         } else {
@@ -68,5 +75,16 @@ class AccessPlugin implements Plugin
     public function isUseLdap(): bool
     {
         return $this->useLdap;
+    }
+
+    public function registerResources(bool $registerResources = true): AccessPlugin
+    {
+        $this->registerResources = $registerResources;
+        return $this;
+    }
+
+    public function isRegisterResources(): bool
+    {
+        return $this->registerResources;
     }
 }

@@ -45,19 +45,19 @@ class RoleResource extends Resource implements HasPermissions
                         Forms\Components\Section::make()
                             ->schema([
                                 Forms\Components\TextInput::make('name')
-                                    ->label(__('vanadi::vanadi.armor.field.name'))
+                                    ->label(__('savannabits-saas::saas.armor.field.name'))
                                     ->required()
                                     ->maxLength(255),
                                 Forms\Components\TextInput::make('guard_name')
-                                    ->label(__('vanadi::vanadi.armor.field.guard_name'))
+                                    ->label(__('savannabits-saas::saas.armor.field.guard_name'))
                                     ->default(Filament::getCurrentPanel()?->getAuthGuard())
                                     ->nullable()
                                     ->maxLength(255),
                                 Forms\Components\Toggle::make('select_all')
                                     ->onIcon('heroicon-s-shield-check')
                                     ->offIcon('heroicon-s-shield-exclamation')
-                                    ->label(__('vanadi::vanadi.armor.field.select_all.name'))
-                                    ->helperText(__('vanadi::vanadi.armor.field.select_all.message'))
+                                    ->label(__('savannabits-saas::saas.armor.field.select_all.name'))
+                                    ->helperText(__('savannabits-saas::saas.armor.field.select_all.message'))
                                     ->reactive()
                                     ->afterStateUpdated(function (Forms\Set $set, $state) {
                                         static::refreshEntitiesStatesViaSelectAll($set, $state);
@@ -71,7 +71,7 @@ class RoleResource extends Resource implements HasPermissions
                     ]),
                 Forms\Components\Tabs::make('Permissions')
                     ->tabs([
-                        Forms\Components\Tabs\Tab::make(__('vanadi::vanadi.armor.resources'))
+                        Forms\Components\Tabs\Tab::make(__('savannabits-saas::saas.armor.resources'))
                             ->visible(fn (): bool => (bool) Utils::isResourceEntityEnabled())
                             ->reactive()
                             ->schema([
@@ -85,7 +85,7 @@ class RoleResource extends Resource implements HasPermissions
                                         'lg' => 3,
                                     ]),
                             ]),
-                        Forms\Components\Tabs\Tab::make(__('vanadi::vanadi.armor.pages'))
+                        Forms\Components\Tabs\Tab::make(__('savannabits-saas::saas.armor.pages'))
                             ->visible(fn (): bool => (bool) Utils::isPageEntityEnabled() && (count(Armor::getPages()) > 0 ? true : false))
                             ->reactive()
                             ->schema([
@@ -99,7 +99,7 @@ class RoleResource extends Resource implements HasPermissions
                                         'lg' => 4,
                                     ]),
                             ]),
-                        Forms\Components\Tabs\Tab::make(__('vanadi::vanadi.armor.widgets'))
+                        Forms\Components\Tabs\Tab::make(__('savannabits-saas::saas.armor.widgets'))
                             ->visible(fn (): bool => (bool) Utils::isWidgetEntityEnabled() && (count(Armor::getWidgets()) > 0 ? true : false))
                             ->reactive()
                             ->schema([
@@ -114,7 +114,7 @@ class RoleResource extends Resource implements HasPermissions
                                     ]),
                             ]),
 
-                        Forms\Components\Tabs\Tab::make(__('vanadi::vanadi.armor.custom'))
+                        Forms\Components\Tabs\Tab::make(__('savannabits-saas::saas.armor.custom'))
                             ->visible(fn (): bool => (bool) Utils::isCustomPermissionEntityEnabled())
                             ->reactive()
                             ->schema([
@@ -139,20 +139,20 @@ class RoleResource extends Resource implements HasPermissions
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->badge()
-                    ->label(__('vanadi::vanadi.armor.column.name'))
+                    ->label(__('savannabits-saas::saas.armor.column.name'))
                     ->formatStateUsing(fn ($state): string => Str::headline($state))
                     ->colors(['primary'])
                     ->searchable(),
                 Tables\Columns\TextColumn::make('guard_name')
                     ->badge()
-                    ->label(__('vanadi::vanadi.armor.column.guard_name')),
+                    ->label(__('savannabits-saas::saas.armor.column.guard_name')),
                 Tables\Columns\TextColumn::make('permissions_count')
                     ->badge()
-                    ->label(__('vanadi::vanadi.armor.column.permissions'))
+                    ->label(__('savannabits-saas::saas.armor.column.permissions'))
                     ->counts('permissions')
                     ->colors(['success']),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label(__('vanadi::vanadi.armor.column.updated_at'))
+                    ->label(__('savannabits-saas::saas.armor.column.updated_at'))
                     ->dateTime(),
             ])
             ->filters([
@@ -191,12 +191,12 @@ class RoleResource extends Resource implements HasPermissions
 
     public static function getModelLabel(): string
     {
-        return __('vanadi::vanadi.armor.resource.label.role');
+        return __('savannabits-saas::saas.armor.resource.label.role');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('vanadi::vanadi.armor.resource.label.roles');
+        return __('savannabits-saas::saas.armor.resource.label.roles');
     }
 
     public static function shouldRegisterNavigation(): bool
@@ -211,7 +211,7 @@ class RoleResource extends Resource implements HasPermissions
 
     public static function getNavigationLabel(): string
     {
-        return __('vanadi::vanadi.armor.nav.role.label');
+        return __('savannabits-saas::saas.armor.nav.role.label');
     }
 
     public static function getNavigationIcon(): string

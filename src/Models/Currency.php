@@ -13,7 +13,7 @@ use Savannabits\Saas\Models\Country;
 
 class Currency extends Model
 {
-    use HasUuids, HasAuditColumns, HasCodeFactory, HasDocStatus;
+    use HasUuids, HasAuditColumns, HasCodeFactory, HasDocStatus, HasTeam;
     protected $guarded = ['id'];
     public function getCodePrefix(): string
     {

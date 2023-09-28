@@ -18,7 +18,7 @@ class StrathmoreTheme implements Plugin
     public function register(Panel $panel): void
     {
         FilamentAsset::register([
-            Theme::make($this->getId(), __DIR__ . '/../../resources/dist/saas.css'),
+            Theme::make($this->getId(), __DIR__ . '/../../resources/dist/strathmore-theme.css'),
         ]);
         $panel
 //            ->font('DM Sans')
@@ -31,6 +31,7 @@ class StrathmoreTheme implements Plugin
                 'success' => Color::Green,
             ])
             ->theme($this->getId())
+            ->maxContentWidth('screen-2xl')
         ;
     }
 

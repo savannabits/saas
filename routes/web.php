@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Savannabits\Saas\Models\Country;
 
 Route::get('/login', function () {
-    return redirect(\Savannabits\Saas\Helpers\Framework::url('/auth/login'));
+    return redirect(\Savannabits\Saas\Helpers\Framework::url('/portal/login'));
 })->name('login');
 Route::middleware('web')->get('countries/{code}/flag', function (Request $request, string $code) {
     $country = Country::whereCode(strtoupper($code))->first();

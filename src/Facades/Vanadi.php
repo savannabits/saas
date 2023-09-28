@@ -11,6 +11,6 @@ class Vanadi extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \Savannabits\Saas\Vanadi::class;
+        return \Savannabits\Saas\Saas::class;
     }
 }

@@ -5,6 +5,7 @@ namespace Savannabits\Saas\Concerns\Model;
 use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Model;
 use Savannabits\Saas\Models\Team;
+use function Savannabits\Saas\default_team;
 
 trait HasTeam
 {
@@ -15,13 +16,15 @@ trait HasTeam
 
     public static function bootHasTeam()
     {
-        self::saving(function (Model $model) {
+        self::creating(function (Model $model) {
             $col = $model::getTeamColumnName();
-            if (Filament::auth()->check() && ! $model->{$col}) {
-                $model->{$col} = Filament::getTenant()?->id;
-                if (! $model->{$col}) {
-                    $model->{$col} = Team::first()?->id; // Attach to first company
+            if (!$model->team_id) {
+                if (auth()->check()) {
+                    $model->team_id = auth()->user()->team_id;
+                } else {
+                    $model->team_id = default_team()?->getAttribute('id');
                 }
+                $model->save();
             }
             /*if ($model->getAttribute('is_cross_team')) {
                 $model->{$col} = null;

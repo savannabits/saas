@@ -21,7 +21,7 @@ class Login extends BaseLogin
     use ListensForLdapBindFailure;
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    protected static string $view = 'vanadi::pages.auth.login';
+    protected static string $view = 'savannabits-saas::pages.auth.login';
 
     public function mount(): void
     {

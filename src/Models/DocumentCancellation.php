@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Savannabits\Saas\Concerns\Model\HasAuditColumns;
 use Savannabits\Saas\Concerns\Model\HasCodeFactory;
 use Savannabits\Saas\Concerns\Model\HasDocStatus;
+use Savannabits\Saas\Concerns\Model\HasTeam;
 
 class DocumentCancellation extends Model
 {
@@ -15,6 +16,7 @@ class DocumentCancellation extends Model
     use HasCodeFactory;
     use HasDocStatus;
     use HasUuids;
+    use HasTeam;
 
     protected $guarded = ['id'];
 

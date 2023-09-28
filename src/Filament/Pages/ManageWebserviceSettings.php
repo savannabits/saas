@@ -7,7 +7,7 @@ use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\SettingsPage;
 use Savannabits\Saas\Concerns\HasPageArmor;
-use Savannabits\Saas\Plugins\VanadiSettings;
+use Savannabits\Saas\Saas;
 use Savannabits\Saas\Settings\WebserviceSettings;
 
 class ManageWebserviceSettings extends SettingsPage
@@ -22,7 +22,7 @@ class ManageWebserviceSettings extends SettingsPage
 
     public static function getNavigationGroup(): ?string
     {
-        return VanadiSettings::getNavGroupLabel();
+        return Saas::getSettingsNavLabel();
     }
 
     public function form(Form $form): Form

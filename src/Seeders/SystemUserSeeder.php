@@ -21,13 +21,13 @@ class SystemUserSeeder extends Seeder
         // Ensure default team is seeded.
         $this->call(TeamTableSeeder::class);
 
-        dd(\Savannabits\Saas\team('DEFAULT'));
         $existing = User::whereEmail('system@process.user')->exists();
         if (!$existing) {
             $user = User::create([
                 'name'              => 'System Process User',
                 'email'             => 'system@process.user',
                 'username'          => 'system-process',
+                'user_number'       => 'SPU',
                 'email_verified_at' => now(),
                 'team_id'           => default_team()->getAttribute('id'),
             ]);

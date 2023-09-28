@@ -36,7 +36,6 @@ class Users
             }
         }
         $user = \App\Models\User::whereUsername($username)->first();
-
         // Sync with DataService
         if ($provider === 'staff') {
             $staff = Webservice::make()->fetchStaff($username);

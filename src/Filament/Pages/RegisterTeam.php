@@ -18,7 +18,7 @@ class RegisterTeam extends RegisterTenant
     protected static ?string $slug = 'select-team';
     public static function getLabel(): string
     {
-        return trans('vanadi::vanadi.tenancy.select_team');
+        return trans('savannabits-saas::saas.tenancy.select_team');
     }
 
     public function form(Form $form): Form
