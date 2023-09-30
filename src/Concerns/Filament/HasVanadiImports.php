@@ -41,7 +41,7 @@ trait HasVanadiImports
 
     public function mutateFieldsForRecordCreation(array $data): array
     {
-        return [];
+        return $data;
     }
 
     public function identifyForUpsertUsing(array $data): array
@@ -50,16 +50,14 @@ trait HasVanadiImports
     }
     public function importRecord(array $data)
     {
-        $args = collect([
-            ...$data,
-            ...$this->mutateFieldsForRecordCreation($data)
-        ]);
-        $identifiers = collect($this->identifyForUpsertUsing($data));
+        $data= collect($this->mutateFieldsForRecordCreation($data));
+        $identifiers = collect($this->identifyForUpsertUsing($data->toArray()));
+        $args = $data->except($identifiers->keys()->toArray());
         Log::info("Upserting record using: ".$identifiers->toJson());
         try {
             return $this->enableUpserts()
-                ? static::getModel()::withoutGlobalScope('team')->updateOrCreate($identifiers->toArray(), $args->except($identifiers->keys()->toArray())->toArray())
-                : static::getModel()::withoutGlobalScopes('team')->firstOrCreate($identifiers->toArray(), $args->except($identifiers->keys()->toArray())->toArray());
+                ? static::getModel()::withoutGlobalScope('team')->updateOrCreate($identifiers->toArray(), $args->toArray())
+                : static::getModel()::withoutGlobalScopes('team')->firstOrCreate($identifiers->toArray(), $args->toArray());
         } catch (\Throwable $exception) {
             Log::error($exception);
             throw $exception;
@@ -68,7 +66,7 @@ trait HasVanadiImports
     public function updateOrCreate(Collection $identifiers,Collection $args) {
         $existing = static::getModel()::withoutGlobalScopes()->where([$identifiers->toArray()]);
         if ($existing) {
-            $existing->update($args->except($identifiers->keys()->toArray())->toArray());
+            $existing->update($args->toArray());
             return $existing;
         } else {
             return static::getModel()::create($args->merge($identifiers->toArray()));

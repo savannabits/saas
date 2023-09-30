@@ -3,6 +3,7 @@
 namespace Savannabits\Saas\Concerns\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Savannabits\Saas\Models\CodeFactory;
 
@@ -32,7 +33,8 @@ trait HasCodeFactory
     {
         static::creating(function (Model $model) {
             if (! $model->getAttribute(static::getCodeColumnName())) {
-                $model->{static::getCodeColumnName()} = Str::uuid()->toString();
+                $uuid = Str::uuid()->toString();
+                $model->{static::getCodeColumnName()} = $uuid;
             }
         });
         static::created(function(Model $model) {

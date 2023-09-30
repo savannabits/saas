@@ -25,7 +25,6 @@ trait HasTeam
                 } else {
                     $model->team_id = default_team()?->getAttribute('id');
                 }
-                $model->save();
             }
             /*if ($model->getAttribute('is_cross_team')) {
                 $model->{$col} = null;
