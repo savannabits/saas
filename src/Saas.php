@@ -38,7 +38,7 @@ class Saas
     {
         if ($useAPI) {
             try {
-                return Currency::convert()->from($from)->to($to)->amount($amount)->get();
+                return floatval(Currency::convert()->from($from)->to($to)->amount($amount)->get() ?? 1.0);
             } catch (Throwable $e) {
                 Log::error($e);
                 Log::info("API fetching failed. Using fallback");

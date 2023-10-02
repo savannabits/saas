@@ -4,11 +4,12 @@ namespace Savannabits\Saas\Filament\Resources\UserResource\Pages;
 
 ini_set('max_execution_time', -1);
 
-use Artisan;
 use Filament\Actions;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 use Savannabits\Saas\Filament\Resources\UserResource;
 use Savannabits\Saas\Services\Users;
 
@@ -51,7 +52,7 @@ class ListUsers extends ListRecords
                 ->send();
         } catch (\Throwable $exception) {
             $res = $exception;
-            \Log::error($exception);
+            Log::error($exception);
             Notification::make('import-failed')
                 ->danger()
                 ->title('Import Failed')
@@ -80,7 +81,7 @@ class ListUsers extends ListRecords
                 ->persistent()
                 ->send();
         } catch (\Throwable $exception) {
-            \Log::error($exception);
+            Log::error($exception);
             Notification::make('import-failed')
                 ->danger()
                 ->title('Import Failed')
@@ -104,7 +105,7 @@ class ListUsers extends ListRecords
                 ->persistent()
                 ->send();
         } catch (\Throwable $exception) {
-            \Log::error($exception);
+            Log::error($exception);
             Notification::make('import-failed')
                 ->danger()
                 ->title('Import Failed')

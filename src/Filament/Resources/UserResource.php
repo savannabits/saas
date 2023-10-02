@@ -85,7 +85,7 @@ class UserResource extends Resource
             Infolists\Components\Section::make([
                 Infolists\Components\Fieldset::make('Assigned Roles')->schema([
                     Infolists\Components\RepeatableEntry::make('roles')->schema([
-                        Infolists\Components\TextEntry::make('name')->formatStateUsing(fn ($state) => Str::of($state)->snake()->title()->replace('_', ' '))->badge()->hiddenLabel(),
+                        Infolists\Components\TextEntry::make('name')->formatStateUsing(fn($state) => Str::of($state)->snake()->title()->replace('_', ' '))->badge()->hiddenLabel(),
                     ])->grid(['md' => 2, 'lg' => 4])->hiddenLabel(),
                 ])->columns(1),
             ]),
@@ -110,6 +110,8 @@ class UserResource extends Resource
                     ->searchable()->sortable(),
                 Tables\Columns\IconColumn::make('meals_active')->boolean(),
                 Tables\Columns\TextColumn::make('meals_allowance')->money('kes')->alignRight(),
+                Tables\Columns\TextColumn::make('allowance_balance')->money('kes')->alignRight(),
+                Tables\Columns\TextColumn::make('wallet_balance')->money('kes')->alignRight(),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -125,8 +127,23 @@ class UserResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\Action::make('update-wallet-balance')
+                        ->form([
+                            Forms\Components\TextInput::make('amount')->numeric()->prefix('Ksh'),
+                            Forms\Components\TextInput::make('narration')->required(),
+                        ])
+                        ->action(fn($record, $data) => $record->updateWalletBalance($data['amount'], $data['narration'])),
+                    Tables\Actions\Action::make('update-allowance-balance')
+                        ->form([
+                            Forms\Components\TextInput::make('amount')->numeric()->prefix('Ksh'),
+                            Forms\Components\TextInput::make('narration')->required(),
+                        ])
+                        ->action(fn($record, $data) => $record->updateAllowanceBalance($data['amount'], $data['narration'])),
+
+                ])
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
