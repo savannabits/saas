@@ -20,15 +20,15 @@ class ListUsers extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\Action::make('sync-user')->label('Synchronize a single User')
+            Actions\Action::make('sync-user')->label('Sync from AD/PnC')
                 ->form([
                     TextInput::make('username')->label('Staff Username/Student No.')->required(),
-                ])->outlined()
-                ->action(fn ($data) => $this->syncUser($data))->icon('heroicon-o-arrow-path'),
-            Actions\Action::make('import-staff')->label('Import Staff from AD')
+                ])->color('success')
+                ->action(fn ($data) => $this->syncUser($data))->icon('heroicon-o-arrow-path-rounded-square'),
+            /*Actions\Action::make('import-staff')->label('Import Staff from AD')
                 ->icon('heroicon-o-arrow-path')->action('importStaff'),
             Actions\Action::make('import-students')->label('Import Students from AD')
-                ->icon('heroicon-o-arrow-path')->action('importStudents'),
+                ->icon('heroicon-o-arrow-path')->action('importStudents'),*/
             Actions\CreateAction::make(),
         ];
     }

@@ -74,7 +74,7 @@ class UserResource extends Resource
                     Infolists\Components\TextEntry::make('first_name'),
                     Infolists\Components\TextEntry::make('other_names'),
                     Infolists\Components\TextEntry::make('surname'),
-                    Infolists\Components\TextEntry::make('department_short_name')->label('Department'),
+                    Infolists\Components\TextEntry::make('department.short_name')->label('Department'),
                     Infolists\Components\TextEntry::make('dob'),
                     Infolists\Components\TextEntry::make('gender'),
                     Infolists\Components\IconEntry::make('is_active')->boolean(),
@@ -106,7 +106,7 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable()->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('department_short_name')->label('Department')
+                Tables\Columns\TextColumn::make('department.short_name')->label('Department')
                     ->searchable()->sortable(),
                 Tables\Columns\IconColumn::make('meals_active')->boolean(),
                 Tables\Columns\TextColumn::make('meals_allowance')->money('kes')->alignRight(),

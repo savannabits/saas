@@ -10,6 +10,7 @@ use Filament\Models\Contracts\HasTenants;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -130,5 +131,10 @@ class User extends Authenticatable implements HasAvatar,FilamentUser,HasTenants,
     public function getTenants(Panel $panel): array|Collection
     {
         return $this->teams;
+    }
+
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class,'department_short_name','short_name');
     }
 }
