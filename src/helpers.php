@@ -2,6 +2,7 @@
 namespace Savannabits\Saas;
 
 use App\Model\User;
+use Illuminate\Support\Facades\Auth;
 use Savannabits\Saas\Helpers\Framework;
 use Savannabits\Saas\Models\Team;
 use Savannabits\Saas\Helpers\Access;
@@ -14,6 +15,13 @@ if (!function_exists('Savannabits\Saas\team')) {
         return Team::whereCode($code)->first();
     }
 }
+if (!function_exists('Savannabits\Saas\current_team')) {
+    function current_team(): ?Team
+    {
+        return Auth::check() ? Auth::user()->team : null;
+    }
+}
+
 if (!function_exists('Savannabits\Saas\framework')) {
     function framework(): Framework
     {
