@@ -176,6 +176,7 @@ class SaasServiceProvider extends PackageServiceProvider
         return [
             'recreate_users_table',
             'create_teams_table',
+            'create_departments_table',
             'create_websockets_statistics_entries_table',
             'create_settings_table',
             'create_media_table',

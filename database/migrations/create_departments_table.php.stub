@@ -1,0 +1,45 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('departments', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->codeColumns('D');
+            $table->teamColumn();
+            $table->teamCodeColumn();
+            $table->unsignedInteger('sync_id')->unique();
+            $table->unsignedInteger('parent_sync_id')->nullable();
+            $table->string('name');
+            $table->string('short_name');
+            $table->string('hod_user_number')->nullable();
+            $table->string('hod_username')->nullable();
+            $table->string('delegate_user_number')->nullable();
+            $table->string('delegate_username')->nullable();
+            $table->statusColumns();
+            $table->auditColumns();
+            $table->uuidNestedSet();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('departments');
+    }
+};

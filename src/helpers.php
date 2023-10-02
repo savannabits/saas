@@ -20,6 +20,13 @@ if (!function_exists('Savannabits\Saas\framework')) {
         return app(Framework::class);
     }
 }
+if (!function_exists('Savannabits\Saas\saas')) {
+    function saas(): Saas
+    {
+        return app(Saas::class);
+    }
+}
+
 if (!function_exists('Savannabits\Saas\default_team')) {
     function default_team(): Team
     {

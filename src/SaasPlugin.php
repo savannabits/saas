@@ -2,6 +2,7 @@
 
 namespace Savannabits\Saas;
 
+use Savannabits\Saas\Filament\Resources\DepartmentResource;
 use Savannabits\Saas\Models\Team;
 use Filament\Contracts\Plugin;
 use Filament\Navigation\NavigationGroup;
@@ -55,6 +56,7 @@ class SaasPlugin implements Plugin
                 TeamResource::class,
                 CurrencyResource::class,
                 CountryResource::class,
+                DepartmentResource::class
             ]);
         }
     }
