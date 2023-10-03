@@ -2,6 +2,7 @@
 
 namespace Savannabits\Saas\Helpers;
 
+use Filament\Support\Colors\Color;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use LaravelReady\ReadableNumbers\Facades\ReadableNumbers;
 use ReflectionClass;
+use Savannabits\Saas\Themes\StrathmoreTheme;
 
 class Framework
 {
@@ -91,4 +93,16 @@ class Framework
             ['y', 't', '1', 'yes', 'true', 'on','active','activated', 'enabled']
         );
     }
+
+    public function rgba_primary($level=500, $alpha=1.0): string
+    {
+        $primary = Color::hex(StrathmoreTheme::PRIMARY_COLOR)[500];
+        return "rgba($primary,$alpha)";
+    }
+    public function rgba_info($level=500, $alpha=1.0): string
+    {
+        $primary = Color::hex(StrathmoreTheme::PRIMARY_COLOR)[500];
+        return "rgba($primary,$alpha)";
+    }
+
 }
