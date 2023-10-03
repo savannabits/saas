@@ -85,6 +85,6 @@
 .fi-body {
     @apply bg-gray-950/10;
     .fi-main-ctn {
-        @apply bg-primary-200
+        @apply bg-primary-500/40 dark:bg-primary-400
     }
 }
