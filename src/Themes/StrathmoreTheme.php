@@ -12,6 +12,10 @@ class StrathmoreTheme implements Plugin
 {
     const PRIMARY_COLOR = '#02338D';
     const INFO_COLOR = '#CC9C4A';
+    const GRAY_COLOR = Color::Gray;
+    const DANGER_COLOR = Color::Rose;
+    const SUCCESS_COLOR = Color::Green;
+    const WARNING_COLOR = Color::Amber;
     public function getId(): string
     {
         return 'strathmore-theme';
@@ -27,10 +31,10 @@ class StrathmoreTheme implements Plugin
             ->colors([
                 'primary' => static::PRIMARY_COLOR,
                 'info' => static::INFO_COLOR,
-                'gray' => Color::Gray,
-                'warning' => Color::Amber,
-                'danger' => Color::Rose,
-                'success' => Color::Green,
+                'gray' => static::GRAY_COLOR,
+                'warning' => static::WARNING_COLOR,
+                'danger' => static::DANGER_COLOR,
+                'success' => static::SUCCESS_COLOR,
             ])
             ->theme($this->getId())
             ->maxContentWidth('screen-2xl')

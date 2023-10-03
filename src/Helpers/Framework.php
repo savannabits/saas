@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use LaravelReady\ReadableNumbers\Facades\ReadableNumbers;
 use ReflectionClass;
+use Savannabits\Saas\AccessPlugin;
 use Savannabits\Saas\Themes\StrathmoreTheme;
 
 class Framework
@@ -94,15 +95,31 @@ class Framework
         );
     }
 
+    public function tailwind_palette(string|array $color): array
+    {
+        if (is_array($color)) return $color; // Already a palette
+        return Str::of($color)->contains('#') ?Color::hex($color) : Color::rgb($color);
+    }
+
     public function rgba_primary($level=500, $alpha=1.0): string
     {
-        $primary = Color::hex(StrathmoreTheme::PRIMARY_COLOR)[500];
+        $primary = $this->tailwind_palette(StrathmoreTheme::PRIMARY_COLOR)[$level];
         return "rgba($primary,$alpha)";
     }
     public function rgba_info($level=500, $alpha=1.0): string
     {
-        $primary = Color::hex(StrathmoreTheme::PRIMARY_COLOR)[500];
-        return "rgba($primary,$alpha)";
+        $color = $this->tailwind_palette(StrathmoreTheme::INFO_COLOR)[$level];
+        return "rgba($color,$alpha)";
+    }
+    public function rgba_danger($level=500, $alpha=1.0): string
+    {
+        $color = $this->tailwind_palette(StrathmoreTheme::DANGER_COLOR)[$level];
+        return "rgba($color,$alpha)";
+    }
+    public function rgba_success($level=500, $alpha=1.0): string
+    {
+        $color = $this->tailwind_palette(StrathmoreTheme::SUCCESS_COLOR)[$level];
+        return "rgba($color,$alpha)";
     }
 
 }
