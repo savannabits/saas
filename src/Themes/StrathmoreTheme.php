@@ -10,6 +10,8 @@ use Filament\Support\Facades\FilamentAsset;
 
 class StrathmoreTheme implements Plugin
 {
+    const PRIMARY_COLOR = '#02338D';
+    const INFO_COLOR = '#CC9C4A';
     public function getId(): string
     {
         return 'strathmore-theme';
@@ -23,8 +25,8 @@ class StrathmoreTheme implements Plugin
         $panel
 //            ->font('DM Sans')
             ->colors([
-                'primary' => '#02338D',
-                'info' => '#CC9C4A',
+                'primary' => static::PRIMARY_COLOR,
+                'info' => static::INFO_COLOR,
                 'gray' => Color::Gray,
                 'warning' => Color::Amber,
                 'danger' => Color::Rose,

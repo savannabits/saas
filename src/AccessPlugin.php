@@ -30,13 +30,13 @@ class AccessPlugin implements Plugin
             ->middleware([
                 RedirectIfInertiaMiddleware::class,
             ])
-            ->discoverPages(in: __DIR__ . '/../Filament/Pages', for: 'Vanadi\\Vanadi\\Filament\\Pages')
+            ->discoverPages(in: __DIR__ . '/../Filament/Pages', for: 'Savannabits\\Saas\\Access\\Filament\\Pages')
             ->navigationGroups([
                 NavigationGroup::make(static::getNavGroupLabel())->collapsible()->collapsed(),
             ]);
         if ($this->isRegisterResources()) {
             $panel->resources([
-                UserResource::class,
+//                UserResource::class,
                 RoleResource::class,
             ]);
         }
