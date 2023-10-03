@@ -6,6 +6,8 @@
         "dev:scripts": "node bin/build.js --dev",
         "build:styles": "npx tailwindcss -i resources/css/index.css -o resources/dist/strathmore-theme.css --postcss --minify",
         "build:scripts": "node bin/build.js",
+        "dev:portalstyles": "npx tailwindcss -i resources/css/portal.css -o resources/dist/portal-theme.css --postcss --watch",
+        "build:portal-styles": "npx tailwindcss -i resources/css/portal.css -o resources/dist/portal-theme.css --postcss --minify",
         "purge": "filament-purge -i resources/dist/strathmore-theme.css -o resources/dist/strathmore-theme.css -v 3.x",
         "dev": "npm-run-all --parallel dev:*",
         "build": "npm-run-all build:*"
