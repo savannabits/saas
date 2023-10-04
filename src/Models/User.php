@@ -3,6 +3,7 @@
 namespace Savannabits\Saas\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use BezhanSalleh\FilamentShield\Traits\HasPanelShield;
 use Filament\Facades\Filament;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
@@ -26,12 +27,14 @@ use Savannabits\Saas\Concerns\Model\HasTeam;
 use Savannabits\Saas\Support\Utils;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasAvatar,FilamentUser,HasTenants, HasMedia, LdapAuthenticatable
 {
     use AuthenticatesWithLdap;
     use HasApiTokens;
-    use HasArmor;
+    use HasRoles;
+    use HasPanelShield;
     use HasAuditColumns;
     use HasCodeFactory;
     use HasTeam;

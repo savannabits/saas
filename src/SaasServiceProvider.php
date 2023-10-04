@@ -57,6 +57,7 @@ class SaasServiceProvider extends PackageServiceProvider
             'permission',
             'vanadi-auth',
             'vanadi-ldap',
+            'vanadi-shield',
             'vanadi-permission',
         ]);
         $configFileName = $package->shortName();
@@ -201,6 +202,11 @@ class SaasServiceProvider extends PackageServiceProvider
         \Config::set('auth.providers', $providers);
         // Override spatie laravel permission
         \Config::set('permission', \Config::get('vanadi-permission'));
+
+        // Override Filament Shield config
+        \Config::set('filament-shield', \Config::get('vanadi-shield'));
+
+
 
         // Override LDAP settings
         \Config::set('ldap', \Config::get('vanadi-ldap'));

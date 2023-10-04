@@ -2,6 +2,7 @@
 
 namespace Savannabits\Saas;
 
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Contracts\Plugin;
 use Filament\Navigation\NavigationGroup;
 use Filament\Panel;
@@ -33,7 +34,7 @@ class AccessPlugin implements Plugin
             ->discoverPages(in: __DIR__ . '/../Filament/Pages', for: 'Savannabits\\Saas\\Access\\Filament\\Pages')
             ->navigationGroups([
                 NavigationGroup::make(static::getNavGroupLabel())->collapsible()->collapsed(),
-            ]);
+            ])->plugin(FilamentShieldPlugin::make());
         if ($this->isRegisterResources()) {
             $panel->resources([
 //                UserResource::class,
