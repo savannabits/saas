@@ -3,9 +3,9 @@
 namespace Savannabits\Saas\Concerns\Policy;
 
 use App\Models\User;
+use BezhanSalleh\FilamentShield\Facades\FilamentShield;
 use Illuminate\Database\Eloquent\Model;
 use Savannabits\Saas\Helpers\Framework;
-use Savannabits\Saas\Support\Armor;
 
 trait InheritsStandardPolicy
 {
@@ -13,7 +13,7 @@ trait InheritsStandardPolicy
 
     public function getSuffix(): string
     {
-        return Armor::new()->getPermissionIdentifier($this->getResourceClass());
+        return FilamentShield::getPermissionIdentifier($this->getResourceClass());
     }
 
     public function makeSuffixFromModel(Model | string $model): string
