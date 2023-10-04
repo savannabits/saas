@@ -40,6 +40,20 @@ class TeamResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Fieldset::make('Accounting Setup')->schema([
+                    Forms\Components\TextInput::make('chart_code')->required(),
+
+                    Forms\Components\TextInput::make('revenue_account_number')->required(),
+                    Forms\Components\TextInput::make('revenue_object_code')->required(),
+
+                    Forms\Components\TextInput::make('payable_account_number'),
+                    Forms\Components\TextInput::make('payable_object_code'),
+
+                    Forms\Components\TextInput::make('deferred_income_account_number'),
+                    Forms\Components\TextInput::make('deferred_income_object_code'),
+
+
+                ]),
                 Forms\Components\Toggle::make('is_active')
                     ->required(),
             ]);
