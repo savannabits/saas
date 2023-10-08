@@ -95,7 +95,7 @@ trait InheritsStandardPolicy
     public function isImmutable(): bool
     {
         $model = $this->getResourceClass()::getModel();
-        return boolval($model?->getAttribute('is_immutable'));
+        return method_exists($model,'hasImmutableTrait');
     }
 
     public function perm(string $prefix): string
