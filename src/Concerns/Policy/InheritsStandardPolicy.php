@@ -45,27 +45,27 @@ trait InheritsStandardPolicy
 
     public function update(User $user, Model $model): bool
     {
-        return $user->can("update_{$this->getSuffix()}") && (! Framework::model_has_doc_status($model) || $model->isDraft());
+        return !$this->isImmutable() && $user->can("update_{$this->getSuffix()}") && (! Framework::model_has_doc_status($model) || $model->isDraft());
     }
 
     public function deleteAny(User $user): bool
     {
-        return $user->can("delete_any_{$this->getSuffix()}");
+        return !$this->isImmutable() && $user->can("delete_any_{$this->getSuffix()}");
     }
 
     public function delete(User $user, Model $model)
     {
-        return $user->can("delete_{$this->getSuffix()}") && (! Framework::model_has_doc_status($model) || $model->isDraft());
+        return !$this->isImmutable() && $user->can("delete_{$this->getSuffix()}") && (! Framework::model_has_doc_status($model) || $model->isDraft());
     }
 
     public function submit(User $user, Model $model): bool
     {
-        return $user->can($this->perm('submit')) && Framework::model_has_doc_status($model) && $model->isDraft();
+        return  $user->can($this->perm('submit')) && Framework::model_has_doc_status($model) && $model->isDraft();
     }
 
     public function cancel(User $user, Model $model): bool
     {
-        return $user->can($this->perm('cancel')) && Framework::model_has_doc_status($model) && $model->isSubmitted();
+        return !$this->isImmutable() && $user->can($this->perm('cancel')) && Framework::model_has_doc_status($model) && $model->isSubmitted();
     }
 
     public function reverse(User $user, Model $model): bool
@@ -91,6 +91,11 @@ trait InheritsStandardPolicy
     public function forceDelete(User $user, Model $model)
     {
         return $user->can("delete_{$this->getSuffix()}") && (! Framework::model_has_doc_status($model) || $model->isDraft());
+    }
+    public function isImmutable(): bool
+    {
+        $model = $this->getResourceClass()::getModel();
+        return boolval($model?->getAttribute('is_immutable'));
     }
 
     public function perm(string $prefix): string

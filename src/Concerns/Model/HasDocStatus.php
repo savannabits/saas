@@ -22,11 +22,15 @@ trait HasDocStatus
             }
         });
         static::updating(function (Model $model) {
-            abort_unless($model->isDraft(), 403, 'You can only update documents which are in DRAFT mode.');
+            if (!$model->isDraft()) {
+                throw new \RuntimeException('You can only update documents which are in draft mode.');
+            }
         });
 
         static::deleting(function (Model $model) {
-            abort_unless($model->isDraft(), 403, 'The Document cannot be deleted because it was already submitted.');
+            if (!$model->isDraft()) {
+                throw new \RuntimeException('You can only delete documents which are in draft mode.');
+            }
         });
     }
 
