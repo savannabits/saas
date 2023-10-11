@@ -36,13 +36,25 @@ class DepartmentResource extends Resource
                 Forms\Components\TextInput::make('short_name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('chart_code')
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\TextInput::make('object_code')
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\TextInput::make('account_number')
+                    ->required()
+                    ->maxLength(255),
+
                 Forms\Components\TextInput::make('sync_id')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('parent_sync_id')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Toggle::make('is_active')
@@ -60,10 +72,12 @@ class DepartmentResource extends Resource
                     ->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('parent.name')
+                Tables\Columns\TextColumn::make('chart_code')
                     ->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('hod_username')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('object_code')
+                    ->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('account_number')
+                    ->searchable()->sortable(),
                 ActiveStatusColumn::make(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
