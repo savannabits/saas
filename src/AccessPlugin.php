@@ -34,7 +34,8 @@ class AccessPlugin implements Plugin
             ->discoverPages(in: __DIR__ . '/../Filament/Pages', for: 'Savannabits\\Saas\\Access\\Filament\\Pages')
             ->navigationGroups([
                 NavigationGroup::make(static::getNavGroupLabel())->collapsible()->collapsed(),
-            ])->plugin(FilamentShieldPlugin::make());
+            ])->plugin(FilamentShieldPlugin::make()
+                ->resourceCheckboxListColumns(['sm' => 2,'lg' => 3,'xl' => 6]));
         if ($this->isRegisterResources()) {
             $panel->resources([
 //                UserResource::class,

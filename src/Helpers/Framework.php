@@ -70,9 +70,9 @@ class Framework
         return eval($math);
     }
 
-    public function substitute(string $expression, array $substitutions = []): string
+    public function substitute(string $expression, array $substitutions = [], string $substitutionIdentifier = ':'): string
     {
-        $keys = collect($substitutions)->keys()->map(fn ($key) => ":$key");
+        $keys = collect($substitutions)->keys()->map(fn ($key) => "{$substitutionIdentifier}{$key}");
         $values = collect($substitutions)->values();
 
         return Str::of($expression)->replace($keys->toArray(), $values->toArray())->toString();

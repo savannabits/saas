@@ -86,8 +86,8 @@ class ManageDepartments extends ManageRecords
             if ($model) {
                 $model->update([
                     'chart_code' => Str::of($data['chart_code'])->toString(),
-                    'object_code' => Str::of($data['object_code'])->padLeft(4,'0'),
-                    'account_number' => Str::of($data['account_number'])->padLeft(7,'0'),
+                    'object_code' => ($chartCode = $data['object_code'])  ? Str::of($chartCode)->padLeft(4,'0'): $chartCode,
+                    'account_number' => ($acNo = $data['account_number']) ? Str::of($acNo)->padLeft(7,'0') : $acNo,
                 ]);
             }
             return $model;
