@@ -50,6 +50,14 @@ class DepartmentResource extends Resource
                 Forms\Components\TextInput::make('account_number')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('revenue_object_code')
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\TextInput::make('revenue_account_number')
+                    ->required()
+                    ->maxLength(255),
+
 
                 Forms\Components\TextInput::make('sync_id')
                     ->required()

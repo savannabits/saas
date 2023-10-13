@@ -61,7 +61,10 @@ class ManageDepartments extends ManageRecords
             Column::make('short_name'),
             Column::make('name'),
             Column::make('account_number'),
+            Column::make('revenue_account_number'),
             Column::make('object_code'),
+            Column::make('revenue_object_code'),
+
         ];
     }
 
@@ -73,6 +76,9 @@ class ManageDepartments extends ManageRecords
             ImportField::make('account_number')->required(),
             ImportField::make('object_code')->required(),
             ImportField::make('chart_code')->required(),
+            ImportField::make('revenue_object_code')->required(),
+            ImportField::make('revenue_chart_code')->required(),
+
         ];
     }
     public function importRecord(array $data)
