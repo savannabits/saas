@@ -55,8 +55,7 @@ class SaasPlugin implements Plugin
             $panel->resources([
                 TeamResource::class,
                 CurrencyResource::class,
-                CountryResource::class,
-                DepartmentResource::class
+                CountryResource::class
             ]);
         }
     }
