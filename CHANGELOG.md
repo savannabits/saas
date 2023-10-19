@@ -2,6 +2,18 @@
 
 All notable changes to `saas` will be documented in this file.
 
+## v1.0.3 - 2023-10-19
+
+### What's Changed
+
+- Fix: Framework getByCode now accepts an array input by @coolsam726 in https://github.com/savannabits/saas/pull/3
+
+### New Contributors
+
+- @coolsam726 made their first contribution in https://github.com/savannabits/saas/pull/3
+
+**Full Changelog**: https://github.com/savannabits/saas/compare/v1.0.2...v1.0.3
+
 ## v1.0.2 - 2023-10-14
 
 ### What's Changed
