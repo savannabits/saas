@@ -18,7 +18,7 @@ if (!function_exists('Savannabits\Saas\team')) {
 if (!function_exists('Savannabits\Saas\current_team')) {
     function current_team(): ?Team
     {
-        return Auth::check() ? Auth::user()->team : null;
+        return Auth::check() ? Auth::user()->team : \Savannabits\Saas\team('DEFAULT');
     }
 }
 
