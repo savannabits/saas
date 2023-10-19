@@ -2,6 +2,14 @@
 
 All notable changes to `saas` will be documented in this file.
 
+## v1.0.5 - 2023-10-19
+
+### What's Changed
+
+- Default Team Adjustment by @coolsam726 in https://github.com/savannabits/saas/pull/5
+
+**Full Changelog**: https://github.com/savannabits/saas/compare/v1.0.4...v1.0.5
+
 ## v1.0.4 - 2023-10-19
 
 ### What's Changed
