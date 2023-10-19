@@ -2,6 +2,14 @@
 
 All notable changes to `saas` will be documented in this file.
 
+## v1.0.4 - 2023-10-19
+
+### What's Changed
+
+- Minor bug fix: getByCode was strictly typed to string for the $code p… by @coolsam726 in https://github.com/savannabits/saas/pull/4
+
+**Full Changelog**: https://github.com/savannabits/saas/compare/v1.0.3...v1.0.4
+
 ## v1.0.3 - 2023-10-19
 
 ### What's Changed
