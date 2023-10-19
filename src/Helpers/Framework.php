@@ -78,7 +78,7 @@ class Framework
         return Str::of($expression)->replace($keys->toArray(), $values->toArray())->toString();
     }
 
-    public function getByCode(Model | string $model, string $code)
+    public function getByCode(Model | string $model, string|array $code)
     {
         if (! Schema::hasColumn($model::query()->getModel()->getTable(), 'code')) {
             return null;
