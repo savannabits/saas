@@ -83,7 +83,9 @@ class Framework
         if (! Schema::hasColumn($model::query()->getModel()->getTable(), 'code')) {
             return null;
         }
-
+        if (is_array($code)) {
+            return $model::query()->whereIn('code', $code)->get();
+        }
         return $model::query()->where('code', '=', trim($code))->first();
     }
 
