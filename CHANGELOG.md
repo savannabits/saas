@@ -2,6 +2,14 @@
 
 All notable changes to `saas` will be documented in this file.
 
+## v1.1.1 - 2023-10-21
+
+### What's Changed
+
+- Added the getStaffByUsername form input in webservice settings by @coolsam726 in https://github.com/savannabits/saas/pull/7
+
+**Full Changelog**: https://github.com/savannabits/saas/compare/v1.1.0...v1.1.1
+
 ## v1.1.0 - 2023-10-21
 
 ### What's Changed
