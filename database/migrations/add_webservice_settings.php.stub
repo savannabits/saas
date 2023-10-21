@@ -14,7 +14,8 @@ return new class extends \Spatie\LaravelSettings\Migrations\SettingsMigration
     public function up()
     {
         $this->migrator->add('webservice.base_url','https://juba.strathmore.edu/dataservice');
-        $this->migrator->add('webservice.staff_endpoint','staff/getStaffByUsername/{username}');
+        $this->migrator->add('webservice.staff_endpoint','staff/getStaff/{staff_number}');
+        $this->migrator->add('webservice.staff_by_username_endpoint','staff/getStaffByUsername/{username}');
         $this->migrator->add('webservice.student_endpoint','student/getStudent/{studentNumber}');
         $this->migrator->add('webservice.all_staff_endpoint','staff/getAllStaff');
         $this->migrator->add('webservice.all_current_students_endpoint','student/getAllCurrentStudents');
@@ -31,6 +32,7 @@ return new class extends \Spatie\LaravelSettings\Migrations\SettingsMigration
     {
         $this->migrator->deleteIfExists('webservice.base_url');
         $this->migrator->deleteIfExists('webservice.staff_endpoint');
+        $this->migrator->deleteIfExists('webservice.staff_by_username_endpoint');
         $this->migrator->deleteIfExists('webservice.student_endpoint');
         $this->migrator->deleteIfExists('webservice.all_staff_endpoint');
         $this->migrator->deleteIfExists('webservice.all_current_students_endpoint');

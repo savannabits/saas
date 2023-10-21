@@ -35,6 +35,7 @@ if (!function_exists('Savannabits\Saas\saas')) {
     }
 }
 
+
 if (!function_exists('Savannabits\Saas\default_team')) {
     function default_team(): Team
     {
