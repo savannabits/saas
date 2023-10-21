@@ -11,6 +11,8 @@ class WebserviceSettings extends Settings
 
     public ?string $staff_endpoint;
 
+    public ?string $staff_by_username_endpoint;
+
     public ?string $student_endpoint;
 
     public ?string $all_staff_endpoint;
@@ -37,10 +39,15 @@ class WebserviceSettings extends Settings
         return \Str::of($this->base_url)->rtrim('/')->append('/')->append($path)->toString();
     }
 
-    public function getStaffUrl($username): string
+    public function getStaffByUsernameUrl($username): string
     {
-        return $this->makeUrl($this->staff_endpoint, ['username' => trim($username)]);
+        return $this->makeUrl($this->staff_by_username_endpoint, ['username' => trim($username)]);
     }
+    public function getStaffByNumberUrl(string $staff_number): string
+    {
+        return $this->makeUrl($this->staff_endpoint, ['staff_number' => trim($staff_number)]);
+    }
+
 
     public function getStudentUrl($studentNumber): string
     {
