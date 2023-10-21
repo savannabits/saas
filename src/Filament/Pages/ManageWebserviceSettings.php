@@ -33,6 +33,7 @@ class ManageWebserviceSettings extends SettingsPage
                 Forms\Components\Section::make([
                     Forms\Components\TextInput::make('base_url')->required()->columnSpanFull(),
                     Forms\Components\Fieldset::make('Webservice Endpoints')->schema([
+                        Forms\Components\TextInput::make('staff_by_username_endpoint')->helperText('insert parameters as {param1}/{param2} where necessary'),
                         Forms\Components\TextInput::make('staff_endpoint')->helperText('insert parameters as {param1}/{param2} where necessary'),
                         Forms\Components\TextInput::make('student_endpoint')->helperText('insert parameters as {param1}/{param2} where necessary'),
                         Forms\Components\TextInput::make('all_staff_endpoint')->helperText('insert parameters as {param1}/{param2} where necessary'),
