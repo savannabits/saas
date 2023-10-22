@@ -2,6 +2,14 @@
 
 All notable changes to `saas` will be documented in this file.
 
+## v1.1.2 - 2023-10-22
+
+### What's Changed
+
+- Bug Fix in HasTeam: referencing auth()->user()->team was causing null… by @coolsam726 in https://github.com/savannabits/saas/pull/8
+
+**Full Changelog**: https://github.com/savannabits/saas/compare/v1.1.1...v1.1.2
+
 ## v1.1.1 - 2023-10-21
 
 ### What's Changed
