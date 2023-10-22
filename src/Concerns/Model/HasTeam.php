@@ -38,8 +38,15 @@ trait HasTeam
                     return;
                 }
                 if (Schema::hasColumn($query->getModel()->getTable(),'team_id')) {
-                    $query->whereBelongsTo(auth()->user()->team)->orWhereNull('team_id')
-                        ->orWhere('team_id','=', default_team()?->id);
+                    $user = auth()->user();
+                    if ($user) {
+                        $query->whereBelongsTo($user->team)
+                            ->orWhereNull('team_id')
+                            ->orWhere('team_id','=', default_team()?->id);
+                    } else  {
+                        $query->whereNull('team_id')
+                            ->orWhere('team_id','=', default_team()?->id);
+                    }
                 }
 //                $query->where('team_id', auth()->user()->team_id);
                 // or with a `team` relationship defined:
