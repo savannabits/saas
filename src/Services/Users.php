@@ -7,6 +7,8 @@ use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 use LdapRecord\Laravel\Commands\ImportLdapUsers;
+use Savannabits\Saas\Ldap\Staff;
+use Savannabits\Saas\Ldap\Student;
 
 class Users
 {
@@ -21,6 +23,25 @@ class Users
      */
     public function syncUser(string $username, string $provider, ?bool $skipLdapImport = false)
     {
+        $user = \App\Models\User::whereUsername($username)->first();
+
+        if ($user) {
+            \Log::info("User exists. Setting GUID");
+            if ($provider ==='staff') {
+                $staff = Staff::query()->where('samaccountname','=', $user->username)->first();
+                if ($staff) {
+                    \Log::info("AD User found. Updating");
+                    $user->update(['guid' => $staff->getConvertedGuid()]);
+                }
+            } else {
+                $student = Student::query()->where('samaccountname','=', $user->username)->first();
+                if ($student) {
+                    \Log::info("AD Student User found. Updating");
+                    $user->update(['guid' => $student->getConvertedGuid()]);
+                }
+            }
+        }
+
         if (! $skipLdapImport) {
             $res = Artisan::call('ldap:import', [
                 'provider' => $provider,
@@ -35,7 +56,6 @@ class Users
                 throw new Exception('The options given could not be used for the import.');
             }
         }
-        $user = \App\Models\User::whereUsername($username)->first();
         // Sync with DataService
         if ($provider === 'staff') {
             $staff = Webservice::make()->fetchStaff($username);
