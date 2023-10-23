@@ -2,6 +2,14 @@
 
 All notable changes to `saas` will be documented in this file.
 
+## v1.1.3 - 2023-10-23
+
+### What's Changed
+
+- Enhancement: Sync GUID for a user before sync by @coolsam726 in https://github.com/savannabits/saas/pull/9
+
+**Full Changelog**: https://github.com/savannabits/saas/compare/v1.1.2...v1.1.3
+
 ## v1.1.2 - 2023-10-22
 
 ### What's Changed
