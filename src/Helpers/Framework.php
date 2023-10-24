@@ -76,9 +76,16 @@ class Framework
         $values = collect($substitutions)->values();
 
         $replacement = Str::of($expression)->replace($keys->toArray(), $values->toArray())->toString();
-        while (Str::of($replacement)->contains($keys)) {
-            $replacement = $this->substitute($replacement,$substitutions,$substitutionIdentifier);
+        // ROUND 2
+        if (Str::of($replacement)->contains($keys)) {
+            $replacement = Str::of($replacement)->replace($keys->toArray(), $values->toArray())->toString();
         }
+
+        // ROUND 3
+        if (Str::of($replacement)->contains($keys)) {
+            $replacement = Str::of($replacement)->replace($keys->toArray(), $values->toArray())->toString();
+        }
+
         return $replacement;
     }
 
