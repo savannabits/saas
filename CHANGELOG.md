@@ -2,6 +2,15 @@
 
 All notable changes to `saas` will be documented in this file.
 
+## v1.1.4 - 2023-10-24
+
+### What's Changed
+
+- New Feature: Loop in Substitution until all keys are substituted. by @coolsam726 in https://github.com/savannabits/saas/pull/10
+- Do 3 Round substitution to avoid infinite loops by @coolsam726 in https://github.com/savannabits/saas/pull/11
+
+**Full Changelog**: https://github.com/savannabits/saas/compare/v1.1.3...v1.1.4
+
 ## v1.1.3 - 2023-10-23
 
 ### What's Changed
