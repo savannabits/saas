@@ -75,7 +75,11 @@ class Framework
         $keys = collect($substitutions)->keys()->map(fn ($key) => "{$substitutionIdentifier}{$key}");
         $values = collect($substitutions)->values();
 
-        return Str::of($expression)->replace($keys->toArray(), $values->toArray())->toString();
+        $replacement = Str::of($expression)->replace($keys->toArray(), $values->toArray())->toString();
+        while (Str::of($replacement)->contains($keys)) {
+            $replacement = $this->substitute($replacement,$substitutions,$substitutionIdentifier);
+        }
+        return $replacement;
     }
 
     public function getByCode(Model | string $model, string|array $code)
