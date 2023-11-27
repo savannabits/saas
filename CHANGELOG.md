@@ -2,6 +2,14 @@
 
 All notable changes to `saas` will be documented in this file.
 
+## v1.1.5 - 2023-11-27
+
+### What's Changed
+
+* Remove Fallback Login by @coolsam726 in https://github.com/savannabits/saas/pull/12
+
+**Full Changelog**: https://github.com/savannabits/saas/compare/v1.1.4...v1.1.5
+
 ## v1.1.4 - 2023-10-24
 
 ### What's Changed
@@ -75,7 +83,7 @@ All notable changes to `saas` will be documented in this file.
 
 ### What's Changed
 
-- Removed the Department Resource Registration so that it can be overriden   
+- Removed the Department Resource Registration so that it can be overriden
   **Full Changelog**: https://github.com/savannabits/saas/compare/v1.0.1...v1.0.2
 
 ## v1.0.1 - 2023-10-13
