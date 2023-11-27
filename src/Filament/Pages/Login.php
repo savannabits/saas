@@ -122,10 +122,10 @@ class Login extends BaseLogin
         return [
             'samaccountname' => $data['username'],
             'password' => $data['password'],
-            'fallback' => [
+            /*'fallback' => [
                 'username' => $data['username'],
                 'password' => $data['password']
-            ]
+            ]*/
         ];
     }
     protected function throwLoginValidationException(string $message): void
