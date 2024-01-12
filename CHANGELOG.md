@@ -2,6 +2,11 @@
 
 All notable changes to `saas` will be documented in this file.
 
+## v1.2.0 - 2024-01-12
+
+Support for Laravel Permission v6
+**Full Changelog**: https://github.com/savannabits/saas/compare/v1.1.5...v1.2.0
+
 ## v1.1.5 - 2023-11-27
 
 ### What's Changed
